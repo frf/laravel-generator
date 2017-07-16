@@ -225,7 +225,7 @@ class CommandData
                 }
             } else {
                 $fileContents = $this->getOption('jsonFromGUI');
-                $jsonData = json_decode($fileContents, true);
+                $jsonData = json_decode(base64_decode($fileContents), true);
                 foreach ($jsonData['fields'] as $field) {
                     if (isset($field['type']) && $field['relation']) {
                         $this->relations[] = GeneratorFieldRelation::parseRelation($field['relation']);
