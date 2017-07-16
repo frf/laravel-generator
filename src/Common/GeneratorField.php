@@ -125,8 +125,9 @@ class GeneratorField
     public static function parseFieldFromFile($fieldInput)
     {
         $field = new self();
-        $field->name = $fieldInput['name'];
-        $field->parseDBType($fieldInput['dbType']);
+        $nameType = explode(":",$fieldInput['fieldInput']);
+        $field->name = $nameType[0];
+        $field->parseDBType($nameType[1]);
         $field->parseHtmlInput(isset($fieldInput['htmlType']) ? $fieldInput['htmlType'] : '');
         $field->validations = isset($fieldInput['validations']) ? $fieldInput['validations'] : '';
         $field->isSearchable = isset($fieldInput['searchable']) ? $fieldInput['searchable'] : false;
